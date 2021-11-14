@@ -1,12 +1,14 @@
 <template>
     <div id="greatTapbar">I am greatTapbar
-
-
+        <trhsmollcom></trhsmollcom>
     </div>
 </template>
 
 <script>
+import trhsmollcom from './trhsmollcom.vue'
+
 export default {
+  components: { trhsmollcom },
     
 }
 </script>
