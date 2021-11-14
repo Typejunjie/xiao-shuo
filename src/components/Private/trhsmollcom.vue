@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div id="trhsmollcom">
         <div></div>
         <div></div>
         <div></div>
@@ -12,9 +12,13 @@ export default {
 }
 </script>
 
-<style>
-div{
-
+<style lang="less" scroped>
+div #trhsmollcom{
+    div{
+       background-color: blanchedalmond;
+       height: 1px;
+       width: 25px;
+    }
 }
 </style>
 
