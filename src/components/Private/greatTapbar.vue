@@ -1,5 +1,5 @@
 <template>
-    <div id="greatTapbar">I am greatTapbar
+    <div id="greatTapbar">
         <trhsmollcom></trhsmollcom>
     </div>
 </template>
