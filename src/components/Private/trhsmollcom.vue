@@ -3,6 +3,7 @@
 touchstart和touchend的连环事件触发没有解决，
 touchend在元素外依旧会触发
 
+依旧需要使用内联样式触发transition，通过切割class无法触发
  */
 
 
@@ -62,14 +63,6 @@ div #trhsmollcom {
       top: 34px;
       left: 20px;
     }
-  }
-  //
-}
-// 定义旋转动画
-@keyframes revolve {
-  from {
-  }
-  to {
   }
 }
 </style>
