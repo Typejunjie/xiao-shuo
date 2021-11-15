@@ -8,7 +8,7 @@ touchend在元素外依旧会触发
 
 
 <template>
-  <div id="trhsmollcom" @touchstart="touchstartact" @touchend="revolve">
+  <div id="trhsmollcom" @touchstart="touchstartact" @touchend="revolve" :style="localnow">
     <div v-for="(value, key) in wrippbox" :style="value" :key="key"></div>
   </div>
 </template>
@@ -19,16 +19,20 @@ export default {
     return {
       wrippbox: ["", "", ""],
       start: Number,
+      localnow: '',
     };
   },
   methods: {
     revolve() {
+      this.$emit('changesaidstats')
       if (this.wrippbox[0] == "" && this.start == 1) {
         this.wrippbox[0] = "top: 26px; transform: rotateZ(45deg);";
         this.wrippbox[1] = "opacity: 0;";
         this.wrippbox[2] = "top: 24px; transform: rotateZ(-45deg);";
+        this.localnow = 'margin-left: 40vw'
       } else {
         this.wrippbox = ["", "", ""];
+        this.localnow = '';
       }
       this.start = 0;
     },
@@ -44,6 +48,7 @@ div #trhsmollcom {
   position: absolute;
   height: 48px;
   width: 50px;
+  transition: all 1s;
   // 定义三个元素的初始状态
   div {
     background-color: white;
