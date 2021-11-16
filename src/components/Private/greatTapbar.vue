@@ -1,7 +1,5 @@
 /* 
 待解决问题
-搜索栏还未设置，需要同其他组件同时移动
-个人中心按键未设置，位置于最有处
 
  */
 
@@ -13,20 +11,25 @@
     <saidbbar :saidbarstats="saidbarstats"></saidbbar>
     <!-- 搜索栏 -->
     <search :stats="saidbarstats" :overlength="{value: 'width: 30vw; left: 15vw'}"></search>
+    <!-- 用户界面按钮 -->
+    <useragent :fontawesome="overawesome"></useragent>
   </div>
 </template>
 
 <script>
 import Search from '../common/search.vue';
+import Useragent from '../common/useragent.vue';
 import Saidbbar from "./saidbbar.vue";
 import trhsmollcom from "./trhsmollcom.vue";
 
 export default {
-  components: { trhsmollcom, Saidbbar, Search },
+  components: { trhsmollcom, Saidbbar, Search, Useragent },
   data() {
     return {
       // 用于传入saidbar控制展开、search缩放
       saidbarstats: false,
+      // 
+      overawesome: 'fas fa-user'
     };
   },
   methods: {

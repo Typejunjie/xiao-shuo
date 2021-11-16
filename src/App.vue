@@ -1,15 +1,17 @@
 <template>
   <div>
     <great-tapbar/>
-    aaa
+    <router-view></router-view>
+    <bottontap></bottontap>
   </div>
 </template>
 
 <script>
+import Bottontap from './components/Private/bottontap.vue'
 import greatTapbar from './components/Private/greatTapbar.vue'
 
 export default {
-  components: { greatTapbar },
+  components: { greatTapbar, Bottontap },
   
 }
 </script>
