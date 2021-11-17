@@ -1,7 +1,7 @@
 <template>
     <div id="bottontap">
-        <div :class="fontread"></div>
-        <div :class="fontwrite"></div>
+        <div :class="fontread" @touchstart='this.$router.replace("/read")'></div>
+        <div :class="fontwrite" @touchstart='this.$router.replace("/write")'></div>
     </div>
 </template>
 
@@ -10,7 +10,7 @@ export default {
     props: {
         fontwrite: {
             type: String,
-            default: 'fas fa-pencil'
+            default: 'fas fa-pencil-square'
         },
         fontread: {
             type: String,
