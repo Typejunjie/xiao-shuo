@@ -28,8 +28,8 @@ export default {
     return {
       // 用于传入saidbar控制展开、search缩放
       saidbarstats: false,
-      // 
-      overawesome: 'fas fa-user'
+      // 用于控制user按钮图标
+      overawesome: 'fa fa-user'
     };
   },
   methods: {

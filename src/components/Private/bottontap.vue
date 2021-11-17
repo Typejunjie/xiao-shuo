@@ -1,20 +1,69 @@
+/* 
+遗留问题
+按键很呆板没有动画和模糊度
+颜色调控不理想
+图标选取不理想
+位置无法由父组件控制
+
+ */
+
 <template>
     <div id="bottontap">
-        <div :class="fontread" @touchstart='this.$router.replace("/read")'></div>
-        <div :class="fontwrite" @touchstart='this.$router.replace("/write")'></div>
+        <div :class="read" 
+        @touchstart='readclint'></div>
+        <div :class="write" 
+        @touchstart='writeclint'></div>
     </div>
 </template>
 
 <script>
 export default {
+    data () {
+        return {
+            //按键状态管理
+            read: this.fontread.active,
+            write: this.fontwrite.silent,
+            turnclint: true,
+        }
+    },
     props: {
+        // 接受父组件控制图标类型
         fontwrite: {
-            type: String,
-            default: 'fas fa-pencil-square'
+            type: Object,
+            default: {
+               active: 'fa fa-pencil',
+               silent: 'fa fa-pencil-square'
+            }
         },
         fontread: {
-            type: String,
-            default: 'fas fa-columns'
+            type: Object,
+            default: {
+                active: 'fa fa-pause',
+                silent: 'fa fa-columns'
+            }
+        }
+    },
+    methods: {
+        // 切换router并更改状态
+        readclint() {
+            this.$router.replace("/read");
+            this.turnclint = true;
+        },
+        writeclint() {
+            this.$router.replace("/write");
+            this.turnclint = false
+        }
+    },
+    watch: {
+        // 实现两个按钮互斥高亮
+        turnclint(ol,ne) {
+           if(ne == false && ol == true){
+               this.read = this.fontread.active;
+               this.write = this.fontwrite.silent;
+           }else{
+               this.read = this.fontread.silent;
+               this.write = this.fontwrite.active;
+           }
         }
     }
 }
@@ -27,14 +76,19 @@ export default {
     height: 10vh;
     width: 100vw;
     display: flex;
+    font-size: 60px;
+    border-top: black solid 1px;
     div{
         height: 100%;
         width: 50vw;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
         &:nth-child(1){
-            background-color: tomato;
+            color: tomato;
+            border-right: solid 1px black;
         }
         &:nth-child(2){
-            background-color: teal;
             color: thistle;
         }
     }

@@ -1,7 +1,7 @@
 <template>
   <div>
     <great-tapbar/>
-    <router-view></router-view>
+    <router-view :height="'84vh'"></router-view>
     <bottontap></bottontap>
   </div>
 </template>
@@ -18,7 +18,5 @@ export default {
 
 <style>
 @import url('./commonCss/reaset.css');
-@import url('./fontawesome/css/all.min.css');
-
 
 </style>
