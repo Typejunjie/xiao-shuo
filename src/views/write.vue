@@ -83,7 +83,12 @@ export default {
       return arrayday[3] + "-" + arrayday[1] + "-" + arrayday[2];
     },
     send() {
-      this.axios.get('http://localhost:8080/').then(res=>{
+      let data = {
+        writeday: this.timenew,
+        type: '测试',
+        content: this.content,
+      }
+      this.axios.post('http://localhost:8080/',data).then(res=>{
         console.log(res);
       })
     }
