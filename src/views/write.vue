@@ -10,7 +10,8 @@
 <template>
   <div :style="'height:' + height + ';'">
     <div id="timeTag">{{ day() }}</div>
-    <textarea name="text" id="" cols="30" rows="10"></textarea>
+    <textarea name="text" id="" cols="30" rows="10" v-model="content"></textarea>
+    <div id="sendbutton" @touchend='send'>确认</div>
     <div id="usertap">
         <div>user</div>
         <div>contenttype</div>
@@ -24,6 +25,8 @@ export default {
     return {
       // 当前时间
       timenew: Array,
+      // 当前内容
+      content: '',
     };
   },
   props: {
@@ -79,6 +82,11 @@ export default {
       this.timenew = [arrayday[3], arrayday[1], arrayday[2]];
       return arrayday[3] + "-" + arrayday[1] + "-" + arrayday[2];
     },
+    send() {
+      this.axios.get('http://localhost:8080/').then(res=>{
+        console.log(res);
+      })
+    }
   },
 };
 </script>
@@ -107,12 +115,20 @@ div {
   div #usertap{
       display: flex;
       div{
-          height: 10vh;
+          height: 5vh;
           width: 50%;
           &:nth-child(1){
               background-color: teal;
           }
       }
+  }
+  div #sendbutton{
+    height: 5vh;
+    background-color: tomato;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border-radius: 10px;
   }
 }
 </style>
