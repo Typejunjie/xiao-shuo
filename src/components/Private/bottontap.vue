@@ -77,7 +77,7 @@ export default {
     width: 100vw;
     display: flex;
     font-size: 60px;
-    border-top: black solid 1px;
+    border-top: black solid 0px;
     div{
         height: 100%;
         width: 50vw;
