@@ -89,7 +89,7 @@ export default {
         content: this.content,
       }
       this.axios.post('http://localhost:8080/write',data).then(res=>{
-        console.log(res);
+        console.log(res.data);
       })
     }
   },
