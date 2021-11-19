@@ -88,7 +88,7 @@ export default {
         type: '测试',
         content: this.content,
       }
-      this.axios.post('http://localhost:8080/',data).then(res=>{
+      this.axios.post('http://localhost:8080/write',data).then(res=>{
         console.log(res);
       })
     }
