@@ -25,9 +25,11 @@ export default {
     };
   },
   created() {
-    if(this.$store.state.datacorrent == 0){
-    }
   },
+  computed: {
+    readdata() {
+    }
+  }
 };
 </script>
 

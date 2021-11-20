@@ -7,9 +7,10 @@ export default createStore({
   },
   mutations: {
     // 刷新read页面数据
-    refresh(state, payload) {
-      payload.then(res => {
+    refresh(state, {http, params}) {
+      http.then(res => {
         state.readdata = state.readdata.concat(res.data);
+        state.datacorrent += params.corrent;
       }).catch(err => {
         throw err
       })
@@ -17,8 +18,8 @@ export default createStore({
   },
   actions: {
     // 发起异步刷新数据
-    refreshdata(content, payload) {
-      content.commit('refresh', payload)
+    refreshdata(content, http, params) {
+      content.commit('refresh', http, params)
     }
   },
   modules: {
