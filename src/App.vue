@@ -12,11 +12,13 @@ import greatTapbar from "./components/Private/greatTapbar.vue";
 
 export default {
   components: { greatTapbar, Bottontap },
+  // read页面首次创建刷新数据
   created() {
-    let params = {};
-    this.axios.post("http://localhost:8080/read", params).then((res) => {
-      console.log(res);
-    });
+    let params = {corrent: 1 };
+    this.$store.dispatch(
+      "refreshdata",
+      this.axios.post("http://localhost:8080/read", params)
+    );
   },
 };
 </script>
