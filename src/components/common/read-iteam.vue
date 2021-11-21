@@ -28,7 +28,7 @@ export default {
 
 <style lang="less" scoped>
 .iteambox {
-  height: 30vh;
+  height: 20vh;
   width: 100vw;
   background-color: turquoise;
   box-sizing: border-box;

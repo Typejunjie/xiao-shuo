@@ -72,6 +72,8 @@ export default {
 <style lang="less" scoped>
 #bottontap{
     position: fixed;
+    background-color: white;
+    box-shadow: 0 -5px 20px rgb(160, 160, 160);
     bottom: 0;
     height: 10vh;
     width: 100vw;

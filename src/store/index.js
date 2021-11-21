@@ -4,6 +4,7 @@ export default createStore({
   state: {
     datacorrent: 0,
     readdata: [],
+    defaulthttp: "192.168.0.101:8080",
   },
   mutations: {
     // 刷新read页面数据
