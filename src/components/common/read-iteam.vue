@@ -1,3 +1,10 @@
+/* 
+遗留问题
+点击后应变高且文本可以更改，且添加确认按钮用于修改内容
+
+ */
+
+
 <template>
   <div class="iteambox">
     <div class="dataheard">
@@ -29,18 +36,20 @@ export default {
 <style lang="less" scoped>
 .iteambox {
   height: 20vh;
-  width: 100vw;
-  background-color: turquoise;
+  width: 85vw;
   box-sizing: border-box;
-  border-bottom: solid black 1px;
-  margin-bottom: 10px;
+  padding: 5%;
+  box-shadow: 0 0 10px rgb(161, 161, 161);
+  border: rgb(196, 196, 196) 1px solid;
+  border-radius: 20px;
+  margin: 10px 0;
   .dataheard {
     display: flex;
     justify-content: space-around;
-    height: 7vh;
+    height: 3vh;
     width: 100%;
     align-items: center;
-    font-size: 22px;
+    font-size: 18px;
     i {
       height: 100%;
       width: 50%;
@@ -57,6 +66,10 @@ export default {
         text-align: center;
       }
     }
+  }
+  .content{
+    box-sizing: border-box;
+    padding: 5%;
   }
 }
 </style>
