@@ -10,8 +10,8 @@ export default createStore({
     // 刷新read页面数据
     refresh(state, {http, params}) {
       http.then(res => {
-        state.readdata = state.readdata.concat(res.data);
-        state.datacorrent += params.corrent;
+        state.readdata = res.data;
+        state.datacorrent = res.data.length;
       }).catch(err => {
         throw err
       })
