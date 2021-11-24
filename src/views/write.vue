@@ -1,20 +1,33 @@
 /* 
 遗留问题
-样式未完全设定
-内容只有text
-没有动画
+user 栏等用户数据库设计完在进行样式设定
+更多的内容类型待数据库设计
+
 
  */
 
 
 <template>
-  <div :style="'height:' + height + ';'">
-    <div id="timeTag">{{ day() }}</div>
-    <textarea name="text" id="" cols="30" rows="10" v-model="content"></textarea>
-    <div id="sendbutton" @touchend='send'>确认</div>
+  <div :style="'height:' + height + ';'" class="writebox">
+    <div class="headbox">
+      <div class="timeTag">
+        <div>today:</div>
+        {{ day() }}
+      </div>
+      <div class="typebox">类型：{{ typevalue }}</div>
+    </div>
+    <textarea
+      name="text"
+      id="content"
+      cols="30"
+      rows="10"
+      v-model="content"
+      placeholder="在此处输入"
+    ></textarea>
+    <div id="sendbutton" @touchend="send">确认</div>
     <div id="usertap">
-        <div>user</div>
-        <div>contenttype</div>
+      <div>user</div>
+      <div>contenttype</div>
     </div>
   </div>
 </template>
@@ -26,7 +39,9 @@ export default {
       // 当前时间
       timenew: Array,
       // 当前内容
-      content: '',
+      content: "",
+      // 当前类型
+      typevalue: "测试",
     };
   },
   props: {
@@ -85,55 +100,89 @@ export default {
     send() {
       let data = {
         writeday: this.timenew,
-        type: '测试',
+        type: "测试",
         content: this.content,
-      }
-      this.axios.post("http://"+this.$store.state.defaulthttp+"/write",data).then(res=>{
-        console.log(res.data);
-      })
-    }
+      };
+      this.axios
+        .post("http://" + this.$store.state.defaulthttp + "/write", data)
+        .then((res) => {
+          console.log(res.data);
+        });
+    },
   },
 };
 </script>
 
 <style lang="less" scoped>
-div {
-  background-color: #bfa;
-  div #timeTag {
-    font-size: 40px;
+.writebox{
+  .headbox{
+    display: flex;
     width: 100vw;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    background-color: blanchedalmond;
-    height: 10vh;
-  }
-  textarea {
-    height: 64vh;
-    width: 99vw;
-    border: 0px;
-    font-size: 30px;
-  }
-  textarea:focus {
-    outline: none;
-  }
-  div #usertap{
+    height: 7vh;
+    .timeTag{
+      width: 50%;
       display: flex;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+      align-content: initial;
+      font-size: 20px;
+      box-sizing: border-box;
+      border-right: 1px solid rgb(145, 144, 144);
+      color: cornflowerblue;
       div{
-          height: 5vh;
-          width: 50%;
-          &:nth-child(1){
-              background-color: teal;
-          }
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        margin-left: -85px;
+        font-size: 15px;
       }
+    }
+    .typebox{
+      width: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: deepskyblue;
+    }
   }
-  div #sendbutton{
+  textarea{
+    width: 100vw;
+    height: 50vh;
+    border: none;
+    box-sizing: border-box;
+    padding: 20px;
+    font-size: 26px;
+    &:focus-visible{
+      outline: none;
+    }
+  }
+  #sendbutton{
+    background-color: rgb(96, 134, 156);
     height: 5vh;
-    background-color: tomato;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
+    width: 24vw;
     border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 20px 0 auto;    
+  }
+  #usertap{
+    display: flex;
+    height: 8vh;
+    div{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      &:nth-child(1){
+        width: 50%;
+        box-sizing: border-box;
+        border-right: rgb(170, 170, 170) 1px solid;
+      }
+      &:nth-child(2){
+        width: 50%;
+      }
+    }
   }
 }
 </style>

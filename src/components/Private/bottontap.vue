@@ -31,15 +31,15 @@ export default {
         fontwrite: {
             type: Object,
             default: {
-               active: 'fa fa-pencil',
-               silent: 'fa fa-pencil-square'
+               active: 'fa fa-paper-plane',
+               silent: 'fa fa-paper-plane-o'
             }
         },
         fontread: {
             type: Object,
             default: {
-                active: 'fa fa-pause',
-                silent: 'fa fa-columns'
+                active: 'fa fa-map',
+                silent: 'fa fa-map-o'
             }
         }
     },
