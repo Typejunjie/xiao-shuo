@@ -39,10 +39,9 @@ export default {
   width: 85vw;
   box-sizing: border-box;
   padding: 5%;
-  box-shadow: 0 0 10px rgb(161, 161, 161);
-  border: rgb(196, 196, 196) 1px solid;
-  border-radius: 20px;
-  margin: 10px 0;
+  box-shadow: 0 0 4px rgb(161, 161, 161);
+  border-radius: 14px;
+  margin: 3vw 0;
   .dataheard {
     display: flex;
     justify-content: space-around;

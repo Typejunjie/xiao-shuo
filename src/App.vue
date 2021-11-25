@@ -21,6 +21,7 @@ import greatTapbar from "./components/Private/greatTapbar.vue";
 
 export default {
   components: { greatTapbar, Bottontap },
+  
   // read页面首次创建刷新数据
   created() {
     let params = { corrent: 999, skip: 0, type: "测试" };

@@ -1,6 +1,5 @@
 /* 
 遗留问题
-搜索功能完成，历史记录待完成
 使用内联样式触发transition
 点击后将占用全宽且显示历史记录栏
 
@@ -9,16 +8,21 @@
  */
 
 <template>
-  <div :style="changestats" class="box">
+  <div :style="act()" class="box">
     <input
       type="text"
       placeholder="搜索"
-      @focus="showhis"
-      @blur="noshowhis"
+      @touchend="input"
       @keydown.enter="search"
       v-model="searchvalue"
     />
-    <div class="hisbox" :style="hisboxcss">以下是历史记录</div>
+    <div
+      class="hisbox"
+      :style="history()"
+      @touchend="this.$store.commit('turnTopBar', 'read')"
+    >
+      以下是历史记录
+    </div>
   </div>
 </template>
 
@@ -26,35 +30,37 @@
 export default {
   data() {
     return {
-      // 更改搜索栏状态
-      changestats: "",
-      // 更改历史记录栏状态
-      hisboxcss: "",
-      // 搜索的内容特征
-      searchvalue: '',
+      // 搜索的内容
+      searchvalue: "",
     };
   },
   props: {
-    stats: Boolean,
-    overlength: Object,
-  },
-  watch: {
-    // 控制搜索栏的长度
-    stats() {
-      if (this.stats) {
-        this.changestats = this.overlength.value;
-      } else {
-        this.changestats = "";
-      }
+    // 控制缩减长度
+    overlength: {
+      type: Object,
+      default: { value: "width: 30vw; left: 15vw" },
     },
   },
   methods: {
-    // 智能搜索的展示
-    showhis() {
-      this.hisboxcss = "height: 100vh;";
+    // saidBar状态的动作
+    act() {
+      if (this.$store.state.topBar.status == "saidBar") {
+        return this.overlength.value;
+      } else {
+        return "";
+      }
     },
-    noshowhis() {
-      this.hisboxcss = "";
+    // 点击事件后更改用户核心状态
+    input() {
+      this.$store.commit("turnTopBar", "search");
+    },
+    // 历史记录的展示
+    history() {
+      if (this.$store.state.topBar.status == "search") {
+        return "height: 100vh;";
+      } else {
+        return "";
+      }
     },
     // 执行搜索
     search() {

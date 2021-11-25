@@ -6,7 +6,11 @@
  */
 
 <template>
-  <div :style="'height:' + height + ';'" class="read-router">
+  <div
+    :style="'height:' + height + ';'"
+    class="read-router"
+    @touchend="this.$store.commit('turnTopBar', 'read')"
+  >
     <read-iteam
       v-for="(value, key) in $store.state.readdata"
       :key="key"
@@ -27,26 +31,16 @@ export default {
       default: "500px",
     },
   },
-  data() {
-    return {
-    };
-  },
-  created() {
-  },
-  computed: {
-    readdata() {
-    }
-  },
 };
 </script>
 
 <style lang="less" scoped>
-div .read-router{
-    border-bottom: solid black 1px;
-    overflow: scroll;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-wrap: wrap;
+div .read-router {
+  border-bottom: solid black 1px;
+  overflow: scroll;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
 }
 </style>

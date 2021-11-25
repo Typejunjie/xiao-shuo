@@ -8,8 +8,8 @@ touchend在元素外依旧会触发
 
 
 <template>
-  <div id="trhsmollcom" @touchstart="touchstartact" @touchend="revolve" :style="localnow">
-    <div v-for="(value, key) in wrippbox" :style="value" :key="key"></div>
+  <div id="trhsmollcom" @touchend="revolve" :style="act(3)">
+    <div v-for="(value, key) in wrippbox" :style="act(key)" :key="key"></div>
   </div>
 </template>
 
@@ -18,27 +18,27 @@ export default {
   data() {
     return {
       wrippbox: ["", "", ""],
-      start: Number,
       localnow: '',
     };
   },
   methods: {
+    // 设定元素动作
     revolve() {
-      this.$emit('changesaidstats')
-      if (this.wrippbox[0] == "" && this.start == 1) {
-        this.wrippbox[0] = "top: 26px; transform: rotateZ(45deg);";
-        this.wrippbox[1] = "opacity: 0;";
-        this.wrippbox[2] = "top: 24px; transform: rotateZ(-45deg);";
-        this.localnow = 'margin-left: 40vw'
-      } else {
-        this.wrippbox = ["", "", ""];
-        this.localnow = '';
+      this.$store.commit('turnTopBar', 'saidBar')
+    },
+    // 监控状态并作出动作
+    act(key) {
+      if(this.$store.state.topBar.status == 'saidBar'){
+        switch(key){
+          case 0:return "top: 26px; transform: rotateZ(45deg);";
+          case 1:return "opacity: 0;";
+          case 2:return "top: 24px; transform: rotateZ(-45deg);";
+          case 3:return 'margin-left: 40vw';
+        }
+      }else{
+        return ''
       }
-      this.start = 0;
-    },
-    touchstartact() {
-      this.start = 1;
-    },
+    }
   },
 };
 </script>

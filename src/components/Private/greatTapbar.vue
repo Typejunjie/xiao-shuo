@@ -6,13 +6,13 @@
 <template>
   <div id="greatTapbar">
     <!-- 侧边栏 -->
-    <trhsmollcom @changesaidstats="changesaidstats"></trhsmollcom>
+    <trhsmollcom></trhsmollcom>
     <!-- 侧边栏按钮 -->
-    <saidbbar :saidbarstats="saidbarstats"></saidbbar>
+    <saidbbar></saidbbar>
     <!-- 搜索栏 -->
-    <search :stats="saidbarstats" :overlength="{value: 'width: 30vw; left: 15vw'}"></search>
+    <search></search>
     <!-- 用户界面按钮 -->
-    <useragent :fontawesome="overawesome"></useragent>
+    <useragent></useragent>
   </div>
 </template>
 
@@ -24,20 +24,6 @@ import trhsmollcom from "./trhsmollcom.vue";
 
 export default {
   components: { trhsmollcom, Saidbbar, Search, Useragent },
-  data() {
-    return {
-      // 用于传入saidbar控制展开、search缩放
-      saidbarstats: false,
-      // 用于控制user按钮图标
-      overawesome: 'fa fa-user'
-    };
-  },
-  methods: {
-    // 更新topbar各组件状态
-    changesaidstats() {
-      this.saidbarstats = !this.saidbarstats;
-    },
-  },
 };
 </script>
 

@@ -7,34 +7,23 @@
  */
 
 <template>
-  <div id="saidbar" :style="stats">
+  <div id="saidbar" :style="status()">
     <div></div>
   </div>
 </template>
 
 <script>
 export default {
-    data () {
-        return {
-            // 予以内联样式修改位置，触发transition
-            stats: '',
-        }
+  methods: {
+    // 由store控制是否打开
+    status() {
+      if (this.$store.state.topBar.status == "saidBar") {
+        return "margin-left: 0vw;";
+      } else {
+        return "";
+      }
     },
-    props: {
-        // 获取父组件传入的状态控制值
-        saidbarstats: Boolean
-    },
-    watch: {
-        // 监视状态控制值的改变
-        saidbarstats(o, n) {
-            if(this.stats == ''){
-                this.stats = 'margin-left: 0vw;';
-            }else{
-                this.stats = '';
-            }
-           
-        }
-    },
+  },
 };
 </script>
 

@@ -8,7 +8,11 @@ user 栏等用户数据库设计完在进行样式设定
 
 
 <template>
-  <div :style="'height:' + height + ';'" class="writebox">
+  <div
+    :style="'height:' + height + ';'"
+    class="writebox"
+    @touchend="this.$store.commit('turnTopBar', 'write')"
+  >
     <div class="headbox">
       <div class="timeTag">
         <div>today:</div>
@@ -52,6 +56,7 @@ export default {
     },
   },
   methods: {
+    // 获取当前时间并处理为所需内容
     day() {
       let arrayday = window.Date().split(" ");
       switch (arrayday[1]) {
@@ -97,6 +102,7 @@ export default {
       this.timenew = [arrayday[3], arrayday[1], arrayday[2]];
       return arrayday[3] + "-" + arrayday[1] + "-" + arrayday[2];
     },
+    // 发送写入数据
     send() {
       let data = {
         writeday: this.timenew,
@@ -114,12 +120,12 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.writebox{
-  .headbox{
+.writebox {
+  .headbox {
     display: flex;
     width: 100vw;
     height: 7vh;
-    .timeTag{
+    .timeTag {
       width: 50%;
       display: flex;
       flex-wrap: wrap;
@@ -129,7 +135,7 @@ export default {
       box-sizing: border-box;
       border-right: 1px solid rgb(145, 144, 144);
       color: cornflowerblue;
-      div{
+      div {
         width: 100%;
         display: flex;
         justify-content: space-around;
@@ -138,7 +144,7 @@ export default {
         font-size: 15px;
       }
     }
-    .typebox{
+    .typebox {
       width: 50%;
       display: flex;
       justify-content: center;
@@ -146,18 +152,18 @@ export default {
       color: deepskyblue;
     }
   }
-  textarea{
+  textarea {
     width: 100vw;
     height: 50vh;
     border: none;
     box-sizing: border-box;
     padding: 20px;
     font-size: 26px;
-    &:focus-visible{
+    &:focus-visible {
       outline: none;
     }
   }
-  #sendbutton{
+  #sendbutton {
     background-color: rgb(96, 134, 156);
     height: 5vh;
     width: 24vw;
@@ -165,21 +171,21 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0 20px 0 auto;    
+    margin: 0 20px 0 auto;
   }
-  #usertap{
+  #usertap {
     display: flex;
     height: 8vh;
-    div{
+    div {
       display: flex;
       justify-content: center;
       align-items: center;
-      &:nth-child(1){
+      &:nth-child(1) {
         width: 50%;
         box-sizing: border-box;
         border-right: rgb(170, 170, 170) 1px solid;
       }
-      &:nth-child(2){
+      &:nth-child(2) {
         width: 50%;
       }
     }

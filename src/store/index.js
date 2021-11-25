@@ -2,9 +2,12 @@ import { createStore } from 'vuex'
 
 export default createStore({
   state: {
+    // 当前read页面数据个数与内容
     datacorrent: 0,
     readdata: [],
+    // 前端项目运行端口
     defaulthttp: "localhost:8080",
+    // 
   },
   mutations: {
     // 刷新read页面数据
@@ -24,5 +27,30 @@ export default createStore({
     }
   },
   modules: {
+    // router状态控制模块
+    routerstatus: {
+      state: {
+        // 路由状态
+        nowrouter: 'read'
+      },
+      mutations: {
+        turnRouter(state,params) {
+          state.nowrouter = params
+        }
+      },
+    },
+    // topBar状态控制模块
+    topBar: {
+      state: {
+        // 用户核心状态
+        status: 'read'
+      },
+      mutations: {
+        turnTopBar(state, params) {
+          state.status = params
+        },
+      }
+    }
+
   }
 })
