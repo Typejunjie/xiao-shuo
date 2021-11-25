@@ -22,9 +22,14 @@ export default {
     };
   },
   methods: {
-    // 设定元素动作
+    // 更改状态
     revolve() {
-      this.$store.commit('turnTopBar', 'saidBar')
+      if(this.$store.state.topBar.status != 'saidBar'){
+        this.$store.commit('turnTopBar', 'saidBar')
+      }else{
+        this.$store.commit('turnTopBar', this.$store.state.routerstatus.nowrouter)
+      }
+      
     },
     // 监控状态并作出动作
     act(key) {

@@ -11,7 +11,7 @@ export default createStore({
   },
   mutations: {
     // 刷新read页面数据
-    refresh(state, {http, params}) {
+    refresh(state, { http, params }) {
       http.then(res => {
         state.readdata = res.data;
         state.datacorrent = res.data.length;
@@ -31,12 +31,12 @@ export default createStore({
     routerstatus: {
       state: {
         // 路由状态
-        nowrouter: 'read'
+        nowrouter: 'read',
       },
       mutations: {
-        turnRouter(state,params) {
+        turnRouter(state, params) {
           state.nowrouter = params
-        }
+        },
       },
     },
     // topBar状态控制模块

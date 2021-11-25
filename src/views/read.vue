@@ -15,6 +15,7 @@
       v-for="(value, key) in $store.state.readdata"
       :key="key"
       :data="value"
+      :num="key"
     ></read-iteam>
   </div>
 </template>
