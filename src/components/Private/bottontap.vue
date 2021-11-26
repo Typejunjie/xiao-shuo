@@ -9,8 +9,8 @@
 
 <template>
   <div id="bottontap">
-    <div :class="read()" @touchend="readclient()"></div>
-    <div :class="write()" @touchend="writeclient()"></div>
+    <div :class="read()" @click="readclient()"></div>
+    <div :class="write()" @click="writeclient()"></div>
   </div>
 </template>
 

@@ -27,10 +27,15 @@ export default {
 };
 </script>
 
-<style>
+<style lang="less" scoped>
 #greatTapbar {
-  height: 48px;
+  height: 6vh;
   background-color: black;
   display: flex;
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  z-index: 999;
 }
 </style>

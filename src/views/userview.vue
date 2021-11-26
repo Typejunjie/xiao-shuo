@@ -1,6 +1,6 @@
 <template>
   <div
-    :style="'height:' + height + ';'"
+    class="userview"
     @touchend="this.$store.commit('turnTopBar', 'user')"
   >
     用户界面
@@ -9,15 +9,12 @@
 
 <script>
 export default {
-  props: {
-    // 高度控制
-    height: {
-      type: String,
-      default: "500px",
-    },
-  },
 };
 </script>
 
 <style lang="less" scoped>
+.userview{
+  padding: 10vh 0;
+  height: 100%;
+}
 </style>

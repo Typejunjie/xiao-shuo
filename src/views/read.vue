@@ -7,7 +7,6 @@
 
 <template>
   <div
-    :style="'height:' + height + ';'"
     class="read-router"
     @touchend="this.$store.commit('turnTopBar', 'read')"
   >
@@ -25,23 +24,18 @@ import readIteam from "../components/common/read-iteam.vue";
 
 export default {
   components: { readIteam },
-  props: {
-    // 高度控制
-    height: {
-      type: String,
-      default: "500px",
-    },
-  },
 };
 </script>
 
 <style lang="less" scoped>
 div .read-router {
-  border-bottom: solid black 1px;
-  overflow: scroll;
+  height: 100%;
   display: flex;
+  overflow: hidden;
   justify-content: space-around;
   align-items: center;
   flex-wrap: wrap;
+  position: relative;
+  padding: 7vh 0 11vh;
 }
 </style>

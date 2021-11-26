@@ -8,7 +8,7 @@ touchend在元素外依旧会触发
 
 
 <template>
-  <div id="trhsmollcom" @touchend="revolve" :style="act(3)">
+  <div id="trhsmollcom" @touchstart="revolve" :style="act(3)">
     <div v-for="(value, key) in wrippbox" :style="act(key)" :key="key"></div>
   </div>
 </template>

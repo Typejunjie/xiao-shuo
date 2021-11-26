@@ -19,7 +19,7 @@
     <div
       class="hisbox"
       :style="history()"
-      @touchend="this.$store.commit('turnTopBar', 'read')"
+      @click="this.$store.commit('turnTopBar', 'read')"
     >
       以下是历史记录
     </div>

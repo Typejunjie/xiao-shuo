@@ -1,12 +1,12 @@
 /* 
 遗留问题
 点击后应变高且文本可以更改，且添加确认按钮用于修改内容
-
+@touchstart="actIteam"
  */
 
 
 <template>
-  <div class="iteambox" @touchstart="actIteam" :style="iteamStyle">
+  <div class="iteambox" @click="actIteam" :style="iteamStyle">
     <div class="dataheard">
       <i>{{ writeday }}</i>
       <i>类型: {{ data.type }}</i>
@@ -20,7 +20,7 @@
         rows="10"
         :value="data.content"
       ></textarea>
-      <div @touchend='pushcontent'>确认</div>
+      <div @click.stop='pushcontent'>确认</div>
     </div>
   </div>
 </template>
@@ -57,15 +57,20 @@ export default {
     },
   },
   methods: {
+    // 移动端click事件
+
     // 修改routerIteam状态
     actIteam() {
       this.actWhether = true;
       this.iteamStyle = "height: 40vh;";
+      console.log('click');
     },
     // push结果到服务器
     pushcontent() {
       this.iteamStyle = "";
-      this.actWhether = false
+      this.actWhether = false;
+      console.log('touchend');
+
     }
   },
 };

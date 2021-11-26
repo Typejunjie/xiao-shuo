@@ -28,7 +28,7 @@ user 栏等用户数据库设计完在进行样式设定
       v-model="content"
       placeholder="在此处输入"
     ></textarea>
-    <div id="sendbutton" @touchend="send">确认</div>
+    <div id="sendbutton" @click="send">确认</div>
     <div id="usertap">
       <div>user</div>
       <div>contenttype</div>
@@ -121,6 +121,9 @@ export default {
 
 <style lang="less" scoped>
 .writebox {
+  padding: 6vh 0;
+  height: 100%;
+  box-sizing: border-box;
   .headbox {
     display: flex;
     width: 100vw;
