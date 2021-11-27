@@ -11,10 +11,11 @@
     @touchend="this.$store.commit('turnTopBar', 'read')"
   >
     <read-iteam
-      v-for="(value, key) in $store.state.readdata"
-      :key="key"
+      v-for="(value, index) in $store.state.readdata"
+      :key="value._id"
       :data="value"
-      :num="key"
+      :_id="value._id"
+      :num="index"
     ></read-iteam>
   </div>
 </template>

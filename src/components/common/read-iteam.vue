@@ -1,12 +1,12 @@
 /* 
 遗留问题
-点击后应变高且文本可以更改，且添加确认按钮用于修改内容
-@touchstart="actIteam"
+
+
  */
 
 
 <template>
-  <div class="iteambox" @click="actIteam" :style="iteamStyle">
+  <div class="iteambox" @touchend="actIteam" :style="iteamStyle">
     <div class="dataheard">
       <i>{{ writeday }}</i>
       <i>类型: {{ data.type }}</i>
@@ -18,10 +18,11 @@
         id=""
         cols="30"
         rows="10"
-        :value="data.content"
+        v-model="data.content"
       ></textarea>
-      <div @click.stop='pushcontent'>确认</div>
+      <div @touchstart.stop="pushcontent">确认</div>
     </div>
+    <div class="delete" @touchstart.stop="_delete"><i class="fa fa-trash-o"></i></div>
   </div>
 </template>
 
@@ -29,7 +30,9 @@
 export default {
   data() {
     return {
+      // 控制修改模式是否开启
       actWhether: false,
+      // 用于盒子内联样式修改
       iteamStyle: "",
     };
   },
@@ -43,6 +46,9 @@ export default {
         content: "无法获取内容",
       },
     },
+    // 数据id
+    _id: "",
+    // 数据在前端的下标
     num: Number,
   },
   computed: {
@@ -57,21 +63,39 @@ export default {
     },
   },
   methods: {
-    // 移动端click事件
-
     // 修改routerIteam状态
     actIteam() {
       this.actWhether = true;
       this.iteamStyle = "height: 40vh;";
-      console.log('click');
     },
     // push结果到服务器
     pushcontent() {
       this.iteamStyle = "";
       this.actWhether = false;
-      console.log('touchend');
-
-    }
+      let params = { _id: this._id, content: this.data.content};
+      this.$store.dispatch("reviseData", {
+        http: this.axios.post(
+          "http://" + this.$store.state.defaulthttp + "/revise",
+          params
+        ),
+      });
+    },
+    // 删除选中数据
+    _delete() {
+      if(this.$store.state._deletewait){
+        console.log('请等待上一条删除完成');
+        return
+      }
+      let params = { _id: this._id };
+      let num = this.num;
+      this.$store.dispatch("deleteData", {
+        http: this.axios.post(
+          "http://" + this.$store.state.defaulthttp + "/delete",
+          params
+        ),
+        num,
+      });
+    },
   },
 };
 </script>
@@ -114,6 +138,7 @@ export default {
   .content {
     box-sizing: border-box;
     padding: 5%;
+    height: 25vh;
   }
   .actbox {
     textarea {
@@ -126,7 +151,7 @@ export default {
         outline: none;
       }
     }
-    div{
+    div {
       height: 4vh;
       width: 16vw;
       background-color: rgb(141, 165, 218);
@@ -136,6 +161,17 @@ export default {
       align-items: center;
       border-radius: 7px;
     }
+  }
+  .delete {
+    transition: all 1s;
+    position: sticky;
+    bottom: 0;
+    height: 5vh;
+    width: 10vw;
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
   }
 }
 </style>

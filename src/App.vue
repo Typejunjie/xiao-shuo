@@ -27,7 +27,6 @@ export default {
     let params = { corrent: 999, skip: 0, type: "测试" };
     this.$store.dispatch("refreshdata", {
       http: this.axios.post("http://"+this.$store.state.defaulthttp+"/read", params),
-      params,
     });
   },
   // 将vh改造为浏览器适配
@@ -41,7 +40,6 @@ export default {
     window.addEventListener('resize', () => {
       // We execute the same script as before
       let vh = window.innerHeight * 0.01
-      console.log(vh);
       document.documentElement.style.setProperty('--vh', `${vh}px`)
     })
   },
