@@ -37,6 +37,8 @@ user 栏等用户数据库设计完在进行样式设定
 </template>
 
 <script>
+import refresh from "@/api/refresh";
+
 export default {
   data() {
     return {
@@ -112,8 +114,13 @@ export default {
       this.axios
         .post("http://" + this.$store.state.defaulthttp + "/write", data)
         .then((res) => {
-          if(res.data.status){
-            this.content = ''
+          if (res.data.status) {
+            // 置空输入框
+            this.content = "";
+            // 刷新read页面
+            refresh(this);
+            // 转到read页面
+            this.$router.replace('/read')
           }
         });
     },

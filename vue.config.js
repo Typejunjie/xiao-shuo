@@ -10,7 +10,7 @@ module.exports = {
         },
         devServer: {
             // 解决手机无法连接network
-            //host: '192.168.137.1',
+            //host: '172.20.10.13',
             port: 8081, // 设置端口号
             https: false, // https:{type:Boolean}
             open: false, //配置自动启动浏览器

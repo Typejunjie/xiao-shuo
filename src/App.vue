@@ -19,19 +19,14 @@
 <script>
 import Bottontap from "./components/Private/bottontap.vue";
 import greatTapbar from "./components/Private/greatTapbar.vue";
+import refresh from "@/api/refresh"
 
 export default {
   components: { greatTapbar, Bottontap },
 
   // read页面首次创建刷新数据
   created() {
-    let params = { corrent: 999, skip: 0, type: "测试" };
-    this.$store.dispatch("refreshdata", {
-      http: this.axios.post(
-        "http://" + this.$store.state.defaulthttp + "/read",
-        params
-      ),
-    });
+    refresh(this);
   },
   // 将vh改造为浏览器适配
   mounted() {
