@@ -7,10 +7,11 @@
 各个组件的打开关闭状态应该移步到vuex中处理
  */
 
-<template><!-- @touchmove.prevent -->
+<template>
+  <!-- @touchmove.prevent -->
   <div id="root">
     <great-tapbar />
-    <router-view :height="'84vh'" @touchmove.stop=''></router-view>
+    <router-view :height="'84vh'" @touchmove.stop=""></router-view>
     <bottontap></bottontap>
   </div>
 </template>
@@ -21,36 +22,51 @@ import greatTapbar from "./components/Private/greatTapbar.vue";
 
 export default {
   components: { greatTapbar, Bottontap },
-  
+
   // read页面首次创建刷新数据
   created() {
     let params = { corrent: 999, skip: 0, type: "测试" };
     this.$store.dispatch("refreshdata", {
-      http: this.axios.post("http://"+this.$store.state.defaulthttp+"/read", params),
+      http: this.axios.post(
+        "http://" + this.$store.state.defaulthttp + "/read",
+        params
+      ),
     });
   },
   // 将vh改造为浏览器适配
   mounted() {
     // First we get the viewport height and we multiple it by 1% to get a value for a vh unit
-    let vh = window.innerHeight * 0.01
+    let vh = window.innerHeight * 0.01;
     // Then we set the value in the --vh custom property to the root of the document
-    document.documentElement.style.setProperty('--vh', `${vh}px`)
+    document.documentElement.style.setProperty("--vh", `${vh}px`);
 
     // We listen to the resize event
-    window.addEventListener('resize', () => {
+    window.addEventListener("resize", () => {
       // We execute the same script as before
-      let vh = window.innerHeight * 0.01
-      document.documentElement.style.setProperty('--vh', `${vh}px`)
-    })
+      let vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty("--vh", `${vh}px`);
+    });
   },
+  /* metaInfo() {
+    return {
+      metaInfo: [{
+        name: "viewport",
+        content: `
+      width=device-width,
+      initial-scale=1.0,
+      maximum-scale=1.0,
+      user-scalable=no
+      `,
+      }],
+    };
+  }, */
 };
 </script>
 
 <style lang="less" scoped>
 @import url("./commonCss/reaset.css");
 
-#root{
+#root {
   overflow-y: none;
 }
-
 </style>

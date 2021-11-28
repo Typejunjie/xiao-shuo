@@ -109,7 +109,6 @@ export default {
         type: "测试",
         content: this.content,
       };
-      let http = false;
       this.axios
         .post("http://" + this.$store.state.defaulthttp + "/write", data)
         .then((res) => {

@@ -6,7 +6,7 @@
 
 
 <template>
-  <div class="iteambox" @touchend="actIteam" :style="iteamStyle">
+  <div class="iteambox" @click="actIteam" :style="iteamStyle">
     <div class="dataheard">
       <i>{{ writeday }}</i>
       <i>类型: {{ data.type }}</i>
@@ -18,11 +18,13 @@
         id=""
         cols="30"
         rows="10"
-        v-model="data.content"
+        v-model="contentlocal"
       ></textarea>
-      <div @touchstart.stop="pushcontent">确认</div>
+      <div @click.stop="pushcontent">确认</div>
     </div>
-    <div class="delete" @touchstart.stop="_delete"><i class="fa fa-trash-o"></i></div>
+    <div class="delete" @click.stop="_delete">
+      <i class="fa fa-trash-o"></i>
+    </div>
   </div>
 </template>
 
@@ -34,6 +36,8 @@ export default {
       actWhether: false,
       // 用于盒子内联样式修改
       iteamStyle: "",
+      // 内容的复印
+      contentlocal: this.data.content,
     };
   },
   props: {
@@ -72,7 +76,10 @@ export default {
     pushcontent() {
       this.iteamStyle = "";
       this.actWhether = false;
-      let params = { _id: this._id, content: this.data.content};
+      if (this.contentlocal == this.data.content) {
+        return;
+      }
+      let params = { _id: this._id, content: this.data.content };
       this.$store.dispatch("reviseData", {
         http: this.axios.post(
           "http://" + this.$store.state.defaulthttp + "/revise",
@@ -82,9 +89,9 @@ export default {
     },
     // 删除选中数据
     _delete() {
-      if(this.$store.state._deletewait){
-        console.log('请等待上一条删除完成');
-        return
+      if (this.$store.state._deletewait) {
+        console.log("请等待上一条删除完成");
+        return;
       }
       let params = { _id: this._id };
       let num = this.num;
