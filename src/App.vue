@@ -1,10 +1,8 @@
 /* 
 遗留问题
 对于信息修改读取状态的通知栏未设置
-滑动问题还未解决
 类型修改查询功能未设置
 
-各个组件的打开关闭状态应该移步到vuex中处理
  */
 
 <template>
@@ -13,6 +11,7 @@
     <great-tapbar />
     <router-view :height="'84vh'" @touchmove.stop=""></router-view>
     <bottontap></bottontap>
+    <modal></modal>
   </div>
 </template>
 
@@ -20,9 +19,10 @@
 import Bottontap from "./components/Private/bottontap.vue";
 import greatTapbar from "./components/Private/greatTapbar.vue";
 import refresh from "@/api/refresh"
+import Modal from './components/Private/modal.vue';
 
 export default {
-  components: { greatTapbar, Bottontap },
+  components: { greatTapbar, Bottontap, Modal },
 
   // read页面首次创建刷新数据
   created() {

@@ -9,7 +9,11 @@ export default createStore({
     // 前端项目运行端口
     defaulthttp: testip.ip + ':8080',
     // 删除等待
-    _deletewait: false
+    _deletewait: false,
+    // 模态框的状态
+    modal: false,
+    modalcontent: '未获取内容',
+    modalPromis: Promise,
   },
   mutations: {
     // 刷新read页面数据
@@ -48,6 +52,14 @@ export default createStore({
       }).catch(err => {
         throw err
       })
+    },
+    // 修改模态框状态
+    turnModal(state, {status, content}) {
+       state.modal = status;
+       state.modalcontent = content
+    },
+    teleport(state, modalPromis) {
+       state.modalPromis = modalPromis;
     },
     // 修改deletewait
     _delete(state) {

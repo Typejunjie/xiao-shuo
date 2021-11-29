@@ -89,19 +89,39 @@ export default {
     },
     // 删除选中数据
     _delete() {
+      // 在上一个删除未完成时不允许再次请求
       if (this.$store.state._deletewait) {
         console.log("请等待上一条删除完成");
         return;
+      } else {
+        // 开启模态框
+        this.$store.commit("turnModal", {
+          status: true,
+          content: "确定要删除吗",
+        });
+        // 创建对象保存promis的resolve、reject
+        let modalPromis = Object;
+        new Promise((resolve, reject) => {
+          modalPromis.resolve = resolve;
+          modalPromis.reject = reject;
+          // 将保存的resolve等发送至store
+          this.$store.commit("teleport", modalPromis);
+        }).then(() => {
+          // 在此等待其他组件调用store中的resolve、reject
+            let params = { _id: this._id };
+            let num = this.num;
+            this.$store.dispatch("deleteData", {
+              http: this.axios.post(
+                "http://" + this.$store.state.defaulthttp + "/delete",
+                params
+              ),
+              num,
+            });
+          })
+          .catch(() => {
+            // 在这里处理取消删除
+          });
       }
-      let params = { _id: this._id };
-      let num = this.num;
-      this.$store.dispatch("deleteData", {
-        http: this.axios.post(
-          "http://" + this.$store.state.defaulthttp + "/delete",
-          params
-        ),
-        num,
-      });
     },
   },
 };
