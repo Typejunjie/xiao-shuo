@@ -1,3 +1,5 @@
+const testip = require('./src/api/testmodelip.js')
+
 module.exports = {
     configureWebpack: {
         resolve: {
@@ -10,7 +12,7 @@ module.exports = {
         },
         devServer: {
             // 解决手机无法连接network
-            //host: '172.20.10.13',
+            host: testip.ip,
             port: 8081, // 设置端口号
             https: false, // https:{type:Boolean}
             open: false, //配置自动启动浏览器
@@ -18,7 +20,7 @@ module.exports = {
         }
     },
     chainWebpack: config => {
-        // GraphQL Loader
+        // 配置loader，tslint、less-loader
         config.module
             .rule('ts')
             .test(/\.ts$/)

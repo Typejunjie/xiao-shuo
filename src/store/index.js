@@ -1,4 +1,5 @@
 import { createStore } from 'vuex'
+const testip = require('../api/testmodelip.js')
 
 export default createStore({
   state: {
@@ -6,7 +7,7 @@ export default createStore({
     datacorrent: 0,
     readdata: [],
     // 前端项目运行端口
-    defaulthttp: "localhost:8080",
+    defaulthttp: testip.ip + ':8080',
     // 删除等待
     _deletewait: false
   },
