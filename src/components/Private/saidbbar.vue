@@ -7,7 +7,9 @@
  */
 
 <template>
+  <!-- 整个栏目外部容器 -->
   <div id="saidbar" :style="status()">
+    <!-- 内容容器 -->
     <div></div>
   </div>
 </template>

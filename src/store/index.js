@@ -13,7 +13,7 @@ export default createStore({
     // 模态框的状态
     modal: false,
     modalcontent: '未获取内容',
-    modalPromis: Promise,
+    modalPromis: Object,
   },
   mutations: {
     // 刷新read页面数据
@@ -99,6 +99,7 @@ export default createStore({
         // 用户核心状态
         status: 'read'
       },
+      // 控制状态
       mutations: {
         turnTopBar(state, params) {
           state.status = params

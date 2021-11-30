@@ -1,16 +1,21 @@
 /* 
 遗留问题
 对于信息修改读取状态的通知栏未设置
-类型修改查询功能未设置
+类型修改功能未设置
+头标签没有管理
 
  */
 
 <template>
   <!-- @touchmove.prevent -->
   <div id="root">
+    <!-- 顶部导航栏 -->
     <great-tapbar />
+    <!-- 路由内容 -->
     <router-view :height="'84vh'" @touchmove.stop=""></router-view>
+    <!-- 底部入路由选择栏 -->
     <bottontap></bottontap>
+    <!-- 模态框 -->
     <modal></modal>
   </div>
 </template>

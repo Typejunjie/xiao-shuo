@@ -8,7 +8,9 @@
  */
 
 <template>
+  <!-- 搜索栏外部容器 -->
   <div :style="act()" class="box">
+    <!-- 输入框 -->
     <input
       type="text"
       placeholder="搜索"
@@ -16,6 +18,7 @@
       @keydown.enter="search"
       v-model="searchvalue"
     />
+    <!-- 历史记录栏 -->
     <div
       class="hisbox"
       :style="history()"

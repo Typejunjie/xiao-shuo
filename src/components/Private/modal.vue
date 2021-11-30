@@ -1,6 +1,6 @@
 <template>
   <!-- 最外层用于覆盖app所有内容阻止用户操作 -->
-  <div class="modalbox" :style="takeup()">
+  <div class="modalbox" v-show="takeup()">
     <div class="modal-wripper">
       <div class="content">{{ this.$store.state.modalcontent }}</div>
       <div class="options">
@@ -16,9 +16,9 @@ export default {
     // 拉取store的状态保证模态框的开启、关闭
     takeup() {
       if (this.$store.state.modal) {
-        return "";
+        return true;
       } else {
-        return "display: none;";
+        return false;
       }
     },
     // 开启模态框后等待用户选择确认或取消，并执行对应resolve、reject方法

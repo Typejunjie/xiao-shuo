@@ -9,6 +9,7 @@
 
 <template>
   <div id="bottontap">
+    <!-- 路由选择按钮 -->
     <div :class="read()" @click="readclient()"></div>
     <div :class="write()" @click="writeclient()"></div>
   </div>

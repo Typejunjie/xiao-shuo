@@ -6,12 +6,15 @@
 
 
 <template>
+  <!-- 控制整个box的高度等的变化-->
   <div class="iteambox" @click="actIteam" :style="iteamStyle">
     <div class="dataheard">
+      <!-- 将获取的数据显示 -->
       <i>{{ writeday }}</i>
       <i>类型: {{ data.type }}</i>
     </div>
     <div class="content" v-show="!actWhether">{{ data.content }}</div>
+    <!-- 点击后换出可修改的输入框 -->
     <div v-show="actWhether" class="actbox">
       <textarea
         name=""
@@ -20,8 +23,10 @@
         rows="10"
         v-model="contentlocal"
       ></textarea>
+      <!-- 将内容发送 -->
       <div @click.stop="pushcontent">确认</div>
     </div>
+    <!-- 删除内容 -->
     <div class="delete" @click.stop="_delete">
       <i class="fa fa-trash-o"></i>
     </div>
@@ -108,6 +113,7 @@ export default {
           this.$store.commit("teleport", modalPromis);
         }).then(() => {
           // 在此等待其他组件调用store中的resolve、reject
+          // 发送删除请求
             let params = { _id: this._id };
             let num = this.num;
             this.$store.dispatch("deleteData", {
