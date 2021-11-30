@@ -50,19 +50,6 @@ export default {
       document.documentElement.style.setProperty("--vh", `${vh}px`);
     });
   },
-  /* metaInfo() {
-    return {
-      metaInfo: [{
-        name: "viewport",
-        content: `
-      width=device-width,
-      initial-scale=1.0,
-      maximum-scale=1.0,
-      user-scalable=no
-      `,
-      }],
-    };
-  }, */
 };
 </script>
 

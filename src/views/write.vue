@@ -118,7 +118,7 @@ export default {
       };
       this.axios
         .post("http://" + this.$store.state.defaulthttp + "/write", data)
-        .then((res) => {
+        .then(res => {
           if (res.data.status) {
             // 置空输入框
             this.content = "";
