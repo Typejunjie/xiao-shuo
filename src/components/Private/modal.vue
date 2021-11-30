@@ -39,7 +39,7 @@ export default {
   height: 100vh;
   width: 100vw;
   background-color: rgba(190, 190, 190, 0.5);
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
   z-index: 100;

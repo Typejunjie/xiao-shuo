@@ -14,6 +14,8 @@ export default createStore({
     modal: false,
     modalcontent: '未获取内容',
     modalPromis: Object,
+    // 状态模态框
+    stateModal: Object,
   },
   mutations: {
     // 刷新read页面数据
@@ -54,16 +56,24 @@ export default createStore({
       })
     },
     // 修改模态框状态
-    turnModal(state, {status, content}) {
-       state.modal = status;
-       state.modalcontent = content
+    turnModal(state, { status, content }) {
+      state.modal = status;
+      state.modalcontent = content
     },
     teleport(state, modalPromis) {
-       state.modalPromis = modalPromis;
+      state.modalPromis = modalPromis;
     },
     // 修改deletewait
     _delete(state) {
       state._deletewait = true
+    },
+    // 修改状态框的状态
+    turnStateM(state, params) {
+      // 正在'fa fa-pulse fa-spinner'  成功'fa-check-square-o' 
+      state.stateModal = params
+    },
+    turnStateMstate(state, params) {
+      state.stateModal.state = params
     }
   },
   actions: {
@@ -79,6 +89,12 @@ export default createStore({
     reviseData(content, http) {
       content.commit('revise', http)
     },
+    // 异步改变状态框
+    aysnturnStateM(content, params) {
+      setTimeout(() => {
+        content.commit('turnStateMstate', params);
+      }, 1500);
+    }
   },
   modules: {
     // router状态控制模块
@@ -105,7 +121,8 @@ export default createStore({
           state.status = params
         },
       }
-    }
+    },
+
 
   }
 })

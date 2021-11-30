@@ -17,6 +17,8 @@
     <bottontap></bottontap>
     <!-- 模态框 -->
     <modal></modal>
+    <!-- 状态弹窗 -->
+    <state-modal></state-modal>
   </div>
 </template>
 
@@ -25,9 +27,10 @@ import Bottontap from "./components/Private/bottontap.vue";
 import greatTapbar from "./components/Private/greatTapbar.vue";
 import refresh from "@/api/refresh"
 import Modal from './components/Private/modal.vue';
+import StateModal from './components/Private/stateModal.vue';
 
 export default {
-  components: { greatTapbar, Bottontap, Modal },
+  components: { greatTapbar, Bottontap, Modal, StateModal },
 
   // read页面首次创建刷新数据
   created() {

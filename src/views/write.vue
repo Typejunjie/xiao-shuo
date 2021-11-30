@@ -106,6 +106,11 @@ export default {
     },
     // 发送写入数据
     send() {
+      this.$store.commit("turnStateM", {
+        state: true,
+        content: "正在写入",
+        font: "fa fa-pulse fa-spinner",
+      });
       let data = {
         writeday: this.timenew,
         type: "测试",
@@ -120,8 +125,26 @@ export default {
             // 刷新read页面
             refresh(this);
             // 转到read页面
-            this.$router.replace('/read')
+            this.$router.replace("/read");
+            // 关闭状态框
+            let params = {
+              state: true,
+              content: "写入成功",
+              font: "fa fa-check-square-o",
+            };
+            this.$store.commit('turnStateM', params)
+            this.$store.dispatch("aysnturnStateM", false);
           }
+        })
+        .catch(() => {
+          // 失败后传给状态框
+          let params = {
+              state: true,
+              content: "写入失败",
+              font: "fa fa-window-close",
+            };
+            this.$store.commit('turnStateM', params)
+            this.$store.dispatch("aysnturnStateM", false);
         });
     },
   },
